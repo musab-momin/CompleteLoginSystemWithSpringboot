@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${Title}"></title>
+    <link rel="stylesheet" th:href="@{/register.css}">
 </head>
 <body>
-    <h2>Register your self </h2>
+<div class="container">
+    <form action="#" method="POST" class="frm">
+        <div class="frm-row">
+            <h2>Register</h2>
+        </div>
+        <div class="frm-sp-row">
+            <div class="frm-row">
+                <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
+                <label for="firstName" class="name-warning"> Space and Special Sysmbols are not allowed </label>
+            </div>
+            <div class="frm-row">
+                <input type="text" name="lastName" id="lastName" placeholder="Last Name"/>
+                <label for="lastName" class="name-warning"> Space and Special Sysmbols are not allowed </label>
+            </div>
+        </div>
 
+        <div class="frm-row">
+            <input name="email" type="email" id="email" placeholder="Email"/>
+            <label for="email" class="email-warning"> email is not valid </label>
+        </div>
+        <div class="frm-row">
+            <input type="password" name="password" id="password" placeholder="Password"/>
+            <label for="password" class="password-warning"> password should contains atleast 8 characters </label>
+            <label for="password" class="password-warning"> password should contain UpperCase latter </label>
+            <label for="password" class="password-warning"> password should contain numeric value </label>
+            <label for="password" class="password-warning"> password should contain special symbol </label>
+        </div>
+        <div class="frm-row">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
