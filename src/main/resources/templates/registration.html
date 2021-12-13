@@ -6,8 +6,8 @@
     <link rel="stylesheet" th:href="@{/register.css}">
 </head>
 <body>
-<div class="container">
-    <form action="#" method="POST" class="frm">
+    <div class="container">
+    <form action="#"  method="POST" class="frm">
         <div class="frm-row">
             <h2>Register</h2>
         </div>
@@ -26,7 +26,7 @@
             <input name="email" type="email" id="email" placeholder="Email"/>
             <label for="email" class="email-warning"> email is not valid </label>
         </div>
-        <div class="frm-row">
+        <div class="frm-row" id="third-row">
             <input type="password" name="password" id="password" placeholder="Password"/>
             <label for="password" class="password-warning"> password should contains atleast 8 characters </label>
             <label for="password" class="password-warning"> password should contain UpperCase latter </label>
@@ -38,5 +38,7 @@
         </div>
     </form>
 </div>
+
+    <script th:src="@{/register.js}"></script>
 </body>
 </html>
