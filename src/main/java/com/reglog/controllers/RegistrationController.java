@@ -1,6 +1,9 @@
 package com.reglog.controllers;
 
 import com.reglog.entity.User;
+import com.reglog.service.RegistrationService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,8 +21,13 @@ import java.util.stream.Stream;
 
 
 @Controller
+@AllArgsConstructor
 public class RegistrationController
 {
+
+    private RegistrationService registrationService;
+
+
     @GetMapping("/register")
     public String doRegistration(Model model)
     {
@@ -30,13 +38,12 @@ public class RegistrationController
     @PostMapping("/handleRegistration")
     public ResponseEntity<?> handleRegistration(@Valid @ModelAttribute("appUser") User appUser, BindingResult result)
     {
+        ResponseEntity<?> response;
 
         if(result.hasErrors()) return new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST);
-        System.out.println("User data: " + appUser);
-        Map<String, String> successResponse = new HashMap<>();
-        successResponse.put("status", "200");
-        successResponse.put("defaultMessage", "Registered Successfully");
-        return new ResponseEntity<>(successResponse, HttpStatus.OK);
+        else   response = registrationService.registerUser(appUser);
+
+       return response;
     }
 
 }
