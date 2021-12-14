@@ -51,7 +51,7 @@ public class User
 
     private String role;
     private LocalDate registerDate;
-    private LocalTime registerTime;
+    private String registerTime;
 
     public User(String firstName, String lastName, String email, String password, String role)
     {

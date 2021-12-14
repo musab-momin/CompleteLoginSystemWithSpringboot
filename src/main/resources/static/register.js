@@ -97,7 +97,7 @@ frm.addEventListener('submit', (e)=>
     email = document.getElementById('email').value;
     password = document.getElementById('password').value;
 
-    function handleSuccess(data){
+    function checkStatus(data){
         for(let key in data)    console.log(`${key} : ${data[key]}`)
     }
 
@@ -110,7 +110,7 @@ frm.addEventListener('submit', (e)=>
         serverResponse.then(data=> {
             data.map ?
             data.map(item=>{
-                console.log(item.defaultMessage);
+                console.log(item);
                 if(item.defaultMessage === 'password should contains 8 characters' || item.defaultMessage === 'password pattern is not satisfied')  passwordValidator(password)
                 else passwordValidator(password);
 
@@ -125,7 +125,7 @@ frm.addEventListener('submit', (e)=>
 
             })
             :
-            handleSuccess(data)
+            checkStatus(data)
 
         })
     }
