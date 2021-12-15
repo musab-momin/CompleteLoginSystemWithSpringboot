@@ -6,37 +6,51 @@
     <link rel="stylesheet" th:href="@{/register.css}">
 </head>
 <body>
+<div class="parent">
+    <div class="poster">
+        <div class="banner">
+            <img src="banner.jpg" alt="#" />
+        </div>
+        <div class="greet">
+            <h1>Welcome To Spring Security!</h1>
+            <h4>This is <span>Example</span> of login system using SpringBoot and Js</h4>
+            <a class="link" href="#">
+                Sign In
+            </a>
+        </div>
+    </div>
     <div class="container">
-    <form action="#"  method="POST" class="frm">
-        <div class="frm-row">
-            <h2>Register</h2>
-        </div>
-        <div class="frm-sp-row">
+        <form method="POST" class="frm">
             <div class="frm-row">
-                <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
-                <label for="firstName" class="name-warning"> Space and Special Sysmbols are not allowed </label>
+                <h2>Create Account</h2>
             </div>
-            <div class="frm-row">
-                <input type="text" name="lastName" id="lastName" placeholder="Last Name"/>
-                <label for="lastName" class="name-warning"> Space and Special Sysmbols are not allowed </label>
+            <div class="frm-sp-row">
+                <div class="frm-row">
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
+                    <label for="firstName" class="name-warning"> Space and Special Sysmbols are not allowed </label>
+                </div>
+                <div class="frm-row">
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name"/>
+                    <label for="lastName" class="name-warning"> Space and Special Sysmbols are not allowed </label>
+                </div>
             </div>
-        </div>
 
-        <div class="frm-row">
-            <input name="email" type="email" id="email" placeholder="Email"/>
-            <label for="email" class="email-warning"> email is not valid </label>
-        </div>
-        <div class="frm-row" id="third-row">
-            <input type="password" name="password" id="password" placeholder="Password"/>
-            <label for="password" class="password-warning"> password should contains atleast 8 characters </label>
-            <label for="password" class="password-warning"> password should contain UpperCase latter </label>
-            <label for="password" class="password-warning"> password should contain numeric value </label>
-            <label for="password" class="password-warning"> password should contain special symbol </label>
-        </div>
-        <div class="frm-row">
-            <button type="submit">Register</button>
-        </div>
-    </form>
+            <div class="frm-row" id="second-row">
+                <input name="email" type="email" id="email" placeholder="Email" />
+                <label for="email" class="email-warning"> email is not valid </label>
+            </div>
+            <div class="frm-row" id="third-row">
+                <input type="password" name="password" id="password" placeholder="Password" />
+                <label for="password" class="password-warning"> password should contains atleast 8 characters </label>
+                <label for="password" class="password-warning"> password should contain UpperCase latter </label>
+                <label for="password" class="password-warning"> password should contain numeric value </label>
+                <label for="password" class="password-warning"> password should contain special symbol </label>
+            </div>
+            <div class="frm-row">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
 </div>
 
     <script th:src="@{/register.js}"></script>
