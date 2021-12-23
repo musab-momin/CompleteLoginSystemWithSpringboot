@@ -13,13 +13,15 @@ let password;
 
 const nameValidator = (name)=>
 {
+    console.log(`Condition is: ${name} : ${ symbols.test(name) }`)
     if(name.trim().length === 0 || symbols.test(name) ){
+        console.log(`Condition: ${ symbols.test(name) }`)
         for( let label of nameWarning ){
             label.innerHTML = 'spaces and special symbols are not allowed';
             label.style.display = 'block'
         }
         return false
-    }else if( name.trim().length < 3 || symbols.test(name) ){
+    }else if( name.trim().length < 3 || symbols.test(name)){
         for( let label of nameWarning ){
             label.innerHTML = 'name is to short';
             label.style.display = 'block'
@@ -33,13 +35,17 @@ const nameValidator = (name)=>
 
 }
 
-const emailValidator = (email)=>
+const emailValidator = (email, mssg = "")=>
 {
-    if(email.match(validEmail)){
+    if(mssg !== ""){
+        emailWarning.style.display = 'block';
+        emailWarning.innerHTML = mssg
+    }
+    else if(email.match(validEmail)){
         emailWarning.style.display = 'none'
         return true
     }else{
-        emailWarning.style.display = 'block'
+        emailWarning.style.display = 'block';
         return false
     }
 
@@ -68,14 +74,11 @@ const passwordValidator = (password)=>
 
 const formValidator = ()=>
 {
-
-    // let  flag = nameValidator(firstName);
-    // flag = flag ? nameValidator(lastName) : false;
-    // flag = flag ? emailValidator(email) : false;
-    // flag = flag ? passwordValidator(password) : false;
-
-
-    return true;
+    let  flag = nameValidator(firstName);
+    flag = flag ? nameValidator(lastName) : false;
+    flag = flag ? emailValidator(email) : false;
+    flag = flag ? passwordValidator(password) : false;
+    return flag;
 }
 
 
@@ -98,7 +101,22 @@ frm.addEventListener('submit', (e)=>
     password = document.getElementById('password').value;
 
     function checkStatus(data){
-        for(let key in data)    console.log(`${key} : ${data[key]}`)
+        for(let key in data)
+        {
+            if(data[key] === "Email is already registered" ){
+                emailValidator(email, "Email is already registered")
+            }
+            else if(data[key] === "Registered Successfully" ){
+                formValidator()
+                let toast = document.querySelector('.toast');
+                toast.classList.add('toast-animation');
+                document.getElementById('firstName').value = "";
+                document.getElementById('lastName').value = ""
+                document.getElementById('email').value = "";
+                document.getElementById('password').value = ""
+            }
+
+        }
     }
 
 
@@ -114,11 +132,24 @@ frm.addEventListener('submit', (e)=>
                 if(item.defaultMessage === 'password should contains 8 characters' || item.defaultMessage === 'password pattern is not satisfied')  passwordValidator(password)
                 else passwordValidator(password);
 
-                 if( item.defaultMessage === 'space and special symbols not allowed')   nameValidator(firstName);
-                 else nameValidator(firstName);
+                 if( item.defaultMessage === 'space and special symbols not allowed') {
+                    let flag =  nameValidator(firstName);
+                    console.log(`This is flag ${flag}`)
+                    flag ? nameValidator(lastName) : null
+                 }
+                 else {
+                     nameValidator(firstName);
+                     nameValidator(lastName);
+                 }
 
-                 if( item.defaultMessage === 'name should be between 3 to 12' ) nameValidator(firstName);
-                 else nameValidator(firstName);
+                 if( item.defaultMessage === 'name should be between 3 to 12' ){
+                     let flag =  nameValidator(firstName);
+                     flag ? nameValidator(lastName) : null
+                 }
+                 else {
+                     nameValidator(firstName);
+                     nameValidator(lastName);
+                 }
 
                  if( item.defaultMessage === 'email is not valid' ) emailValidator(email);
                 else emailValidator(email);

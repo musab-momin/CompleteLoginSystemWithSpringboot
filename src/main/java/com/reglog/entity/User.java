@@ -4,12 +4,11 @@ import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 
 
 @AllArgsConstructor
@@ -61,6 +60,8 @@ public class User
         this.password = password;
         this.role = role;
     }
+
+    public String getEmail(){  return this.email;  }
 
 
 
