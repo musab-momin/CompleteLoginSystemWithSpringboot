@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
@@ -23,8 +24,8 @@ public class RegistrationService
 
     public String doRegistration(User appUser)
     {
-        User duplicateUser = userRepo.getByEmail(appUser.getEmail());
-        if(duplicateUser != null)  return "DUPLICATE";
+        Optional<User> duplicateUser = userRepo.getByEmail(appUser.getEmail());
+        if(duplicateUser.isEmpty())  return "DUPLICATE";
         appUser.setRole("USER");
         appUser.setRegisterDate(LocalDate.now());
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -49,7 +50,7 @@ public class RegistrationService
         }else if(flag.equals("DUPLICATE")){
             Map<String, String> duplicateResponse = new HashMap<>();
             duplicateResponse.put("status", "400");
-            duplicateResponse.put("defaultMessage", "Email is already registred");
+            duplicateResponse.put("defaultMessage", "Email is already registered");
             return new ResponseEntity<>(duplicateResponse, HttpStatus.BAD_REQUEST);
         }else{
             Map<String, String> errorResponse = new HashMap<>();

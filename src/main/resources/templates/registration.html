@@ -6,15 +6,15 @@
     <link rel="stylesheet" th:href="@{/register.css}">
 </head>
 <body>
+<div class="toast">
+    <span>Registered Successfully!</span>
+</div>
 <div class="parent">
     <div class="poster">
-        <div class="banner">
-            <img src="banner.jpg" alt="#" />
-        </div>
         <div class="greet">
             <h1>Welcome To Spring Security!</h1>
             <h4>This is <span>Example</span> of login system using SpringBoot and Js</h4>
-            <a class="link" href="#">
+            <a class="link" th:href="@{/}">
                 Sign In
             </a>
         </div>
@@ -52,6 +52,7 @@
         </form>
     </div>
 </div>
+
 
     <script th:src="@{/register.js}"></script>
 </body>

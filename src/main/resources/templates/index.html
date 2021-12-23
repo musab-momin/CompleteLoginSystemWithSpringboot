@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${ title }">Login</title>
+    <link rel="stylesheet" th:href="@{/register.css}" />
+</head>
+<body>
+<div class="parent">
+    <div class="poster">
+        <div class="greet">
+            <h1>Welcome To Spring Security!</h1>
+            <h4>This is <span>Example</span> of login system using SpringBoot and Js</h4>
+            <a class="link" th:href="@{/register}">
+                Sign Up
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <form action="#" th:action="@{ /doLogin }" method="POST" class="log-frm">
+            <div class="frm-row">
+                <h2>Login</h2>
+            </div>
+            <div class="frm-row" id="second-row">
+                <input name="email" type="email" id="email" placeholder="Email" required/>
+            </div>
+            <div class="frm-row" id="third-row">
+                <input type="password" name="password" id="password" placeholder="Password" />
+            </div>
+            <div class="frm-row">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
