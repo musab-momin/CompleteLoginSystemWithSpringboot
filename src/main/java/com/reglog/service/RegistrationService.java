@@ -5,6 +5,7 @@ import com.reglog.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
@@ -21,11 +21,13 @@ public class RegistrationService
 {
 
     private final UserRepo userRepo;
+    private final BCryptPasswordEncoder encoder;
 
     public String doRegistration(User appUser)
     {
         Optional<User> duplicateUser = userRepo.getByEmail(appUser.getEmail());
         if(duplicateUser.isEmpty())  return "DUPLICATE";
+        appUser.setPassword(encoder.encode(appUser.getPassword()));
         appUser.setRole("USER");
         appUser.setRegisterDate(LocalDate.now());
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
