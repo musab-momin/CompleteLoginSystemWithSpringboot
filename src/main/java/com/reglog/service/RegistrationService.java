@@ -26,7 +26,7 @@ public class RegistrationService
     public String doRegistration(User appUser)
     {
         Optional<User> duplicateUser = userRepo.getByEmail(appUser.getEmail());
-        if(duplicateUser.isEmpty())  return "DUPLICATE";
+        if(duplicateUser.isPresent())  return "DUPLICATE";
         appUser.setPassword(encoder.encode(appUser.getPassword()));
         appUser.setRole("USER");
         appUser.setRegisterDate(LocalDate.now());

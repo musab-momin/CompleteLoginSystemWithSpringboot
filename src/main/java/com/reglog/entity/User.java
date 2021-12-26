@@ -43,7 +43,7 @@ public class User
 
     @NotBlank(message = "password is mandatory")
     @Size(min = 8, message = "password should contains 8 characters")
-    @Pattern(regexp = "^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "password pattern is not satisfied")
+//    @Pattern(regexp = "^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "password pattern is not satisfied")
     @Column(length = 255, nullable = false, unique = false)
     private String password;
 
