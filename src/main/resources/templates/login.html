@@ -17,8 +17,11 @@
         </div>
     </div>
     <div class="container">
-        <div>
-            <h5 th:text = "${ SPRING_SECURITY_LAST_EXCEPTION.message }}"></h5>
+        <div th:if="${param.error}">
+            <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+        </div>
+        <div th:if="${param.logout}">
+            <p class="text-warning">You have been logged out.</p>
         </div>
         <form action="#" th:action="@{/handleLogin}" method="POST" class="log-frm">
             <div class="frm-row">
