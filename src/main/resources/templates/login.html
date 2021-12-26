@@ -17,7 +17,10 @@
         </div>
     </div>
     <div class="container">
-        <form action="#" th:action="@{ /doLogin }" method="POST" class="log-frm">
+        <div>
+            <h5 th:text = "${ SPRING_SECURITY_LAST_EXCEPTION.message }}"></h5>
+        </div>
+        <form action="#" th:action="@{/handleLogin}" method="POST" class="log-frm">
             <div class="frm-row">
                 <h2>Login</h2>
             </div>

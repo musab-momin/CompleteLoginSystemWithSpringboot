@@ -50,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/user/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/handleLogin")
+                .defaultSuccessUrl("/user/home");
     }
 }
