@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @AllArgsConstructor
@@ -31,7 +32,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     public AuthenticationProvider authenticationProvider()
     {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userDetailsServe);
+        try {
+            daoAuthenticationProvider.setUserDetailsService(userDetailsServe);
+        }catch (UsernameNotFoundException ae) {
+            ae.printStackTrace();
+        }catch (Exception ae){
+            ae.printStackTrace();
+        }
+
+
         daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
         return  daoAuthenticationProvider;
     }
@@ -55,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/handleLogin")
-                .defaultSuccessUrl("/user/home")
+                .defaultSuccessUrl("/defaultSuccess")
                 .usernameParameter("email")
                 .passwordParameter("password");
     }

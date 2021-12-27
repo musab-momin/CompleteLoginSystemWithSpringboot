@@ -30,7 +30,7 @@ body{
     width: 40%;
     height: 100vh;
     min-height: 100vh;
-    background-image: url('banner.jpg');
+    background-image: url('banner.webp');
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -205,6 +205,35 @@ span{
     }
     100%{
         bottom: -20%;
+        opacity: 0;
+    }
+
+}
+
+
+.mssg{
+    margin-bottom: 1em;
+    padding: 1em 1em;
+    border-radius: 5px;
+    color: #fff;
+    opacity: 0;
+    animation: mssg-animation 3s linear;
+}
+.mssg.danger{
+    background: #d9534f ;
+}
+.mssg.success{
+    background: #5cb85c;
+}
+
+@keyframes mssg-animation {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
         opacity: 0;
     }
 

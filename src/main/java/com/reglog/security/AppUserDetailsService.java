@@ -18,6 +18,10 @@ public class AppUserDetailsService implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return new AppUserDetails(userRepo.getByEmail(email)
-                .orElseThrow(()-> new UsernameNotFoundException(String.format("User with this email %s does not exists ", email))));
+                .orElseThrow(()->{
+                    System.out.println(System.out.printf("User with this email %s does not exists: ", email));
+                    return new UsernameNotFoundException(String.format("User with this email %s does not exists ", email));
+                }
+                ));
     }
 }
