@@ -238,3 +238,27 @@ span{
     }
 
 }
+
+#fourth-row{
+    position: relative;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    gap: .5em;
+}
+#fourth-row input[type='checkbox']
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+}
+
+#fourth-row > label{
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+}
