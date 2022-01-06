@@ -13,7 +13,6 @@ let password;
 
 const nameValidator = (name)=>
 {
-    console.log(`Condition is: ${name} : ${ symbols.test(name) }`)
     if(name.trim().length === 0 || symbols.test(name) ){
         console.log(`Condition: ${ symbols.test(name) }`)
         for( let label of nameWarning ){
@@ -88,6 +87,8 @@ const doPost = async (frmData)=>
         method: 'post',
         body: frmData
     })
+    console.log("This is server response>>>>>>>>>>>>>>")
+    console.log(call);
     const response = await call.json();
     return response;
 }
@@ -133,23 +134,22 @@ frm.addEventListener('submit', (e)=>
                 else passwordValidator(password);
 
                  if( item.defaultMessage === 'space and special symbols not allowed') {
-                    let flag =  nameValidator(firstName);
-                    console.log(`This is flag ${flag}`)
-                    flag ? nameValidator(lastName) : null
+                    console.log("Server side error>>>>>>>>>>>>")
+
+                    for( let label of nameWarning ){
+
+                      label.innerHTML = 'spaces and special symbols are not allowed';
+                      label.style.display = 'block'
+                       console.log(label)
+                    }
                  }
                  else {
                      nameValidator(firstName);
                      nameValidator(lastName);
+                     alert('you are wrong')
                  }
 
-                 if( item.defaultMessage === 'name should be between 3 to 12' ){
-                     let flag =  nameValidator(firstName);
-                     flag ? nameValidator(lastName) : null
-                 }
-                 else {
-                     nameValidator(firstName);
-                     nameValidator(lastName);
-                 }
+                
 
                  if( item.defaultMessage === 'email is not valid' ) emailValidator(email);
                 else emailValidator(email);
