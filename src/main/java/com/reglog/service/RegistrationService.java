@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
@@ -43,6 +44,7 @@ public class RegistrationService
 
     public ResponseEntity<?> registerUser(User appUser)
     {
+
         String flag = doRegistration(appUser);
         if(flag.equals("SAVED") ) {
             Map<String, String> successResponse = new HashMap<>();
@@ -61,5 +63,8 @@ public class RegistrationService
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         }
     }
+
+
+
 
 }
